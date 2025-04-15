@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Signin = () => {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -25,28 +26,45 @@ const Signin = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-black text-white">
-      <form onSubmit={handleSignin} className="p-8 bg-gray-800 rounded shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-        <input
+      <motion.form
+        onSubmit={handleSignin}
+        className="p-8 bg-gray-800 rounded-xl shadow-lg max-w-sm w-full"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, type: "spring", stiffness: 50 }}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-center text-purple-400">Welcome Back</h2>
+        <p className="text-center text-gray-400 mb-6">Sign in to access your virtual room</p>
+
+        <motion.input
           name="username"
-          placeholder="Username"
-          className="mb-2 px-3 py-2 block w-full text-black"
+          placeholder="Email Address"
+          className="mb-4 px-4 py-2 block w-full text-black bg-gray-200 border-2 border-gray-600 rounded-md focus:outline-none focus:border-purple-500 transition"
           onChange={handleChange}
           required
+          whileFocus={{ scale: 1.05 }}
         />
-        <input
+
+        <motion.input
           name="password"
           type="password"
           placeholder="Password"
-          className="mb-4 px-3 py-2 block w-full text-black"
+          className="mb-6 px-4 py-2 block w-full text-black bg-gray-200 border-2 border-gray-600 rounded-md focus:outline-none focus:border-purple-500 transition"
           onChange={handleChange}
           required
+          whileFocus={{ scale: 1.05 }}
         />
-        {error && <p className="text-red-400 mb-2">{error}</p>}
-        <button type="submit" className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">
+
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
+        <motion.button
+          type="submit"
+          className="w-full py-2 bg-purple-600 rounded-md font-semibold text-white hover:bg-purple-700 transition"
+          whileHover={{ scale: 1.05 }}
+        >
           Sign In
-        </button>
-      </form>
+        </motion.button>
+      </motion.form>
     </div>
   );
 };

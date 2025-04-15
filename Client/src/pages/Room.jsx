@@ -78,7 +78,7 @@ const Room = () => {
       <button
         onClick={() => {
           localStorage.removeItem("metameet-user");
-          window.location.href = "/signin";
+          window.location.href = "/";
         }}
         className="absolute top-4 right-4 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
       >
